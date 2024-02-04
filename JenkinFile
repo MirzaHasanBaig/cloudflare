@@ -16,7 +16,7 @@ pipeline {
         }
         stage('Build') {
             steps {
-                bat "C:/terraform/terraform.exe apply --var token=$cloudflare -auto-approve"
+                bat "C:/terraform/terraform.exe destroy --var token=$cloudflare -auto-approve"
             }
         }
     }

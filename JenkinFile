@@ -11,7 +11,7 @@ pipeline {
         }
         stage('plan') {
             steps {
-                bat "C:/terraform/terraform.exe plan --var token=$cloudflare -auto-approve"
+                bat "C:/terraform/terraform.exe plan --var token=$cloudflare"
             }
         }
         stage('Build') {

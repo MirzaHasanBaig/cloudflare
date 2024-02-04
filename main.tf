@@ -16,7 +16,7 @@ provider "cloudflare" {
 
 resource "cloudflare_record" "terraform-add" {
   zone_id = var.zone_id
-  name    = "terraform"
+  name    = "new"
   value   = "192.0.2.1"
   type    = "A"
   ttl     = 3600

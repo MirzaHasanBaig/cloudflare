@@ -6,7 +6,7 @@ pipeline {
     stages {
         stage('Build') {
             steps {
-                bat "terraform apply --var token=$cloudflare -auto-approve"
+                bat "C:\terraform\terraform.exe apply --var token=$cloudflare -auto-approve"
             }
         }
     }

@@ -8,6 +8,11 @@ terraform {
       version = "~> 4.0"
     }
   }
+
+  backend "local" {
+    path = "C:/terraform/state/terraform.tfstate"
+  }
+
 }
 
 provider "cloudflare" {

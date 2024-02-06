@@ -1,0 +1,25 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  labels:
+    app: nginx-project
+  name: 
+  namespace: default # if non-default namespace
+  annotations:
+    cert-manager.io/cluster-issuer: letsencrypt-prod
+spec:
+  rules:
+  - host: dev.testlink.me # your domain
+    http:
+      paths:
+      - backend:
+          service:
+            name: nginx-project
+            port:
+              number: 80 # use appropriate port
+        path: /
+        pathType: Prefix
+  tls:
+  - hosts:
+    - dev.testlink.me # your domain 
+    secretName: letsencrypt-prod # secret name, same as the privateKeySecretRef in the (Cluster)Issuer

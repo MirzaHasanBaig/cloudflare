@@ -1,0 +1,28 @@
+eksctl create cluster  --instance-selector-vcpus=2 --instance-selector-memory=2 --name testdev --dry-run > create-cluster.yml
+
+
+helm repo add jetstack https://charts.jetstack.io
+helm repo update
+
+
+helm install cert-manager jetstack/cert-manager \
+      --install --create-namespace \
+      --wait --namespace cert-manager \
+      --set installCRDs=true
+
+
+helm repo add nginx-stable https://helm.nginx.com/stable
+helm repo update
+
+helm install nginx-ingress-internal ingress-nginx/ingress-nginx \
+    --namespace ingress-basic \
+    --set controller.replicaCount=2 \
+    --set controller.nodeSelector."kubernetes\.io/os"=linux \
+    --set controller.admissionWebhooks.patch.nodeSelector."kubernetes\.io/os"=linux \
+    --set controller.admissionWebhooks.patch.image.digest="" \
+    --set defaultBackend.nodeSelector."kubernetes\.io/os"=linux \
+    --set controller.extraArgs.enable-ssl-passthrough="" \
+    --set controller.ingressClassResource.name="internal-nginx" \
+    --set controller.ingressClassResource.controllerValue="k8s.io/internal-ingress-nginx" \
+    --set controller.service.loadBalancerIP=<Static IP Address> \
+    --set controller.service.annotations."service\.beta\.kubernetes\.io/azure-load-balancer-health-probe-request-path"=/healthz

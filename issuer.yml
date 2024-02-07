@@ -1,5 +1,5 @@
-apiVersion: cert-manager.io/v1
-kind: ClusterIssuer # I'm using ClusterIssuer here
+CapiVersion: cert-manager.io/v1
+kind: ClusterIssuer
 metadata:
   name: letsencrypt-prod
 spec:
@@ -10,5 +10,9 @@ spec:
       name: letsencrypt-prod-key
     solvers:
     - http01:
-        ingress:
-          class: nginx 
+       ingress:
+         class: internal-nginx
+         podTemplate:
+            spec:
+              nodeSelector:
+                "kubernetes.io/os": lin

@@ -1,23 +1,25 @@
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
-  name: web-app-ingress
+  name: hello-world-ingress
   annotations:
-    kubernetes.io/ingress.class: "nginx"
-    cert-manager.io/cluster-issuer: "letsencrypt-prod"
+    nginx.ingress.kubernetes.io/ssl-redirect: "false"
+    nginx.ingress.kubernetes.io/use-regex: "true"
+    nginx.ingress.kubernetes.io/rewrite-target: /$2
 spec:
+  ingressClassName: internal-nginx
   tls:
   - hosts:
-    - kube.testlink.me
-    secretName: secure-testlink-p6658
+    - MY_CUSTOM_DOMAIN
+    secretName: secret-tls
   rules:
-  - host: kube.testlink.me
+  - host: MY_CUSTOM_DOMAIN
     http:
       paths:
       - path: /
         pathType: Prefix
         backend:
           service:
-            name: nginx-project
+            name: aks-helloworld-one
             port:
               number: 80

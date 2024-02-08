@@ -1,7 +1,7 @@
 apiVersion: eksctl.io/v1alpha5
 availabilityZones:
 - us-east-1d
-- us-east-1b
+- us-east-1c
 cloudWatch:
   clusterLogging: {}
 iam:
@@ -37,11 +37,11 @@ managedNodeGroups:
   - t3.small
   - t3a.small
   labels:
-    alpha.eksctl.io/cluster-name: dev2
-    alpha.eksctl.io/nodegroup-name: ng-00080ad5
+    alpha.eksctl.io/cluster-name: testdev
+    alpha.eksctl.io/nodegroup-name: ng-ed314c00
   maxSize: 2
   minSize: 2
-  name: ng-00080ad5
+  name: ng-ed314c00
   privateNetworking: false
   releaseVersion: ""
   securityGroups:
@@ -51,14 +51,14 @@ managedNodeGroups:
     allow: false
     publicKeyPath: ""
   tags:
-    alpha.eksctl.io/nodegroup-name: ng-00080ad5
+    alpha.eksctl.io/nodegroup-name: ng-ed314c00
     alpha.eksctl.io/nodegroup-type: managed
   volumeIOPS: 3000
   volumeSize: 80
   volumeThroughput: 125
   volumeType: gp3
 metadata:
-  name: dev2
+  name: testdev
   region: us-east-1
   version: "1.25"
 privateCluster:

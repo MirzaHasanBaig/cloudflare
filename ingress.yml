@@ -1,25 +1,19 @@
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
-  name: hello-world-ingress
+  name: nginx-bilgicloud-ingress
   annotations:
-    nginx.ingress.kubernetes.io/ssl-redirect: "false"
-    nginx.ingress.kubernetes.io/use-regex: "true"
-    nginx.ingress.kubernetes.io/rewrite-target: /$2
+    kubernetes.io/ingress.class: nginx
+
 spec:
-  ingressClassName: internal-nginx
-  tls:
-  - hosts:
-    - MY_CUSTOM_DOMAIN
-    secretName: secret-tls
   rules:
-  - host: MY_CUSTOM_DOMAIN
+  - host: test2.testlink.me
     http:
       paths:
       - path: /
         pathType: Prefix
         backend:
           service:
-            name: aks-helloworld-one
+            name: yakuphan-devops
             port:
               number: 80

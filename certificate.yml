@@ -1,14 +1,14 @@
 apiVersion: cert-manager.io/v1
 kind: Certificate
 metadata:
-  name: sample-app
+  name: tls-test
 spec:
-  secretName: secret-tls
+  secretName: secret-tls-2
   renewBefore: 240h
   duration: 2160h
-  commonName: MY_CUSTOM_DOMAIN
+  commonName: test2.testlink.me
   dnsNames:
-  - MY_CUSTOM_DOMAIN
+  - test2.testlink.me
   issuerRef:
     name: letsencrypt-prod
     kind: ClusterIssuer

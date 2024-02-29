@@ -1,0 +1,3 @@
+Domain: example.com
+Secret: secretssl
+Service: svctoattach

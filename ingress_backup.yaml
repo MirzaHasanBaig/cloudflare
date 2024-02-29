@@ -1,0 +1,273 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  annotations:
+    kubectl.kubernetes.io/last-applied-configuration: |
+      {"apiVersion":"networking.k8s.io/v1","kind":"Ingress","metadata":{"annotations":{},"name":"b2bfe-ingress","namespace":"default"},"spec":{"rules":[{"host":"app.staging.ecommercemd.com","http":{"paths":[{"backend":{"service":{"name":"ssl-redirect","port":{"name":"use-annotation"}}},"path":"/*","pathType":"ImplementationSpecific"},{"backend":{"service":{"name":"redirect-to-www","port":{"name":"use-annotation"}}},"path":"/*","pathType":"ImplementationSpecific"}]}},{"host":"www.app.staging.ecommercemd.com","http":{"paths":[{"backend":{"service":{"name":"ssl-redirect","port":{"name":"use-annotation"}}},"path":"/*","pathType":"ImplementationSpecific"},{"backend":{"service":{"name":"b2b-fe-admin-service","port":{"number":443}}},"path":"/admin","pathType":"Prefix"},{"backend":{"service":{"name":"b2b-fe-service","port":{"number":443}}},"path":"/*","pathType":"ImplementationSpecific"}]}},{"host":"emd.app.staging.ecommercemd.com","http":{"paths":[{"backend":{"service":{"name":"b2b-service","port":{"number":443}}},"path":"/*","pathType":"ImplementationSpecific"}]}},{"host":"stage1.app.staging.ecommercemd.com","http":{"paths":[{"backend":{"service":{"name":"ssl-redirect","port":{"name":"use-annotation"}}},"path":"/*","pathType":"ImplementationSpecific"},{"backend":{"service":{"name":"redirect-to-www","port":{"name":"use-annotation"}}},"path":"/*","pathType":"ImplementationSpecific"}]}},{"host":"www.stage1.app.staging.ecommercemd.com","http":{"paths":[{"backend":{"service":{"name":"ssl-redirect","port":{"name":"use-annotation"}}},"path":"/*","pathType":"ImplementationSpecific"},{"backend":{"service":{"name":"b2b-fe-admin-service","port":{"number":443}}},"path":"/admin","pathType":"Prefix"},{"backend":{"service":{"name":"b2b-fe-service","port":{"number":443}}},"path":"/*","pathType":"ImplementationSpecific"}]}},{"host":"emd.stage1.app.staging.ecommercemd.com","http":{"paths":[{"backend":{"service":{"name":"b2b-service","port":{"number":443}}},"path":"/*","pathType":"ImplementationSpecific"}]}},{"host":"stage2.app.staging.ecommercemd.com","http":{"paths":[{"backend":{"service":{"name":"ssl-redirect","port":{"name":"use-annotation"}}},"path":"/*","pathType":"ImplementationSpecific"},{"backend":{"service":{"name":"redirect-to-www","port":{"name":"use-annotation"}}},"path":"/*","pathType":"ImplementationSpecific"}]}},{"host":"www.stage2.app.staging.ecommercemd.com","http":{"paths":[{"backend":{"service":{"name":"ssl-redirect","port":{"name":"use-annotation"}}},"path":"/*","pathType":"ImplementationSpecific"},{"backend":{"service":{"name":"b2b-fe-admin-service","port":{"number":443}}},"path":"/admin","pathType":"Prefix"},{"backend":{"service":{"name":"b2b-fe-service","port":{"number":443}}},"path":"/*","pathType":"ImplementationSpecific"}]}},{"host":"emd.stage2.app.staging.ecommercemd.com","http":{"paths":[{"backend":{"service":{"name":"b2b-service","port":{"number":443}}},"path":"/*","pathType":"ImplementationSpecific"}]}},{"host":"stage3.app.staging.ecommercemd.com","http":{"paths":[{"backend":{"service":{"name":"ssl-redirect","port":{"name":"use-annotation"}}},"path":"/*","pathType":"ImplementationSpecific"},{"backend":{"service":{"name":"redirect-to-www","port":{"name":"use-annotation"}}},"path":"/*","pathType":"ImplementationSpecific"}]}},{"host":"www.stage3.app.staging.ecommercemd.com","http":{"paths":[{"backend":{"service":{"name":"ssl-redirect","port":{"name":"use-annotation"}}},"path":"/*","pathType":"ImplementationSpecific"},{"backend":{"service":{"name":"b2b-fe-admin-service","port":{"number":443}}},"path":"/admin","pathType":"Prefix"},{"backend":{"service":{"name":"b2b-fe-service","port":{"number":443}}},"path":"/*","pathType":"ImplementationSpecific"}]}},{"host":"emd.stage3.app.staging.ecommercemd.com","http":{"paths":[{"backend":{"service":{"name":"b2b-service","port":{"number":443}}},"path":"/*","pathType":"ImplementationSpecific"}]}},{"host":"stage4.app.staging.ecommercemd.com","http":{"paths":[{"backend":{"service":{"name":"ssl-redirect","port":{"name":"use-annotation"}}},"path":"/*","pathType":"ImplementationSpecific"},{"backend":{"service":{"name":"redirect-to-www","port":{"name":"use-annotation"}}},"path":"/*","pathType":"ImplementationSpecific"}]}},{"host":"www.stage4.app.staging.ecommercemd.com","http":{"paths":[{"backend":{"service":{"name":"ssl-redirect","port":{"name":"use-annotation"}}},"path":"/*","pathType":"ImplementationSpecific"},{"backend":{"service":{"name":"b2b-fe-admin-service","port":{"number":443}}},"path":"/admin","pathType":"Prefix"},{"backend":{"service":{"name":"b2b-fe-service","port":{"number":443}}},"path":"/*","pathType":"ImplementationSpecific"}]}},{"host":"emd.stage4.app.staging.ecommercemd.com","http":{"paths":[{"backend":{"service":{"name":"b2b-service","port":{"number":443}}},"path":"/*","pathType":"ImplementationSpecific"}]}}]}}
+  creationTimestamp: "2022-11-11T11:26:24Z"
+  generation: 5
+  name: b2bfe-ingress
+  namespace: default
+  resourceVersion: "146545437"
+  uid: 46360185-a900-4d63-a410-8e6db46915c1
+spec:
+  rules:
+  - host: app.staging.ecommercemd.com
+    http:
+      paths:
+      - backend:
+          service:
+            name: ssl-redirect
+            port:
+              name: use-annotation
+        path: /*
+        pathType: ImplementationSpecific
+      - backend:
+          service:
+            name: redirect-to-www
+            port:
+              name: use-annotation
+        path: /*
+        pathType: ImplementationSpecific
+  - host: www.app.staging.ecommercemd.com
+    http:
+      paths:
+      - backend:
+          service:
+            name: ssl-redirect
+            port:
+              name: use-annotation
+        path: /*
+        pathType: ImplementationSpecific
+      - backend:
+          service:
+            name: b2b-fe-admin-service
+            port:
+              number: 443
+        path: /admin
+        pathType: Prefix
+      - backend:
+          service:
+            name: b2b-fe-service
+            port:
+              number: 443
+        path: /*
+        pathType: ImplementationSpecific
+  - host: emd.app.staging.ecommercemd.com
+    http:
+      paths:
+      - backend:
+          service:
+            name: b2b-service
+            port:
+              number: 443
+        path: /*
+        pathType: ImplementationSpecific
+  - host: stage1.app.staging.ecommercemd.com
+    http:
+      paths:
+      - backend:
+          service:
+            name: ssl-redirect
+            port:
+              name: use-annotation
+        path: /*
+        pathType: ImplementationSpecific
+      - backend:
+          service:
+            name: redirect-to-www
+            port:
+              name: use-annotation
+        path: /*
+        pathType: ImplementationSpecific
+  - host: www.stage1.app.staging.ecommercemd.com
+    http:
+      paths:
+      - backend:
+          service:
+            name: ssl-redirect
+            port:
+              name: use-annotation
+        path: /*
+        pathType: ImplementationSpecific
+      - backend:
+          service:
+            name: b2b-fe-admin-service
+            port:
+              number: 443
+        path: /admin
+        pathType: Prefix
+      - backend:
+          service:
+            name: b2b-fe-service
+            port:
+              number: 443
+        path: /*
+        pathType: ImplementationSpecific
+  - host: emd.stage1.app.staging.ecommercemd.com
+    http:
+      paths:
+      - backend:
+          service:
+            name: b2b-service
+            port:
+              number: 443
+        path: /*
+        pathType: ImplementationSpecific
+  - host: stage2.app.staging.ecommercemd.com
+    http:
+      paths:
+      - backend:
+          service:
+            name: ssl-redirect
+            port:
+              name: use-annotation
+        path: /*
+        pathType: ImplementationSpecific
+      - backend:
+          service:
+            name: redirect-to-www
+            port:
+              name: use-annotation
+        path: /*
+        pathType: ImplementationSpecific
+  - host: www.stage2.app.staging.ecommercemd.com
+    http:
+      paths:
+      - backend:
+          service:
+            name: ssl-redirect
+            port:
+              name: use-annotation
+        path: /*
+        pathType: ImplementationSpecific
+      - backend:
+          service:
+            name: b2b-fe-admin-service
+            port:
+              number: 443
+        path: /admin
+        pathType: Prefix
+      - backend:
+          service:
+            name: b2b-fe-service
+            port:
+              number: 443
+        path: /*
+        pathType: ImplementationSpecific
+  - host: emd.stage2.app.staging.ecommercemd.com
+    http:
+      paths:
+      - backend:
+          service:
+            name: b2b-service
+            port:
+              number: 443
+        path: /*
+        pathType: ImplementationSpecific
+  - host: stage3.app.staging.ecommercemd.com
+    http:
+      paths:
+      - backend:
+          service:
+            name: ssl-redirect
+            port:
+              name: use-annotation
+        path: /*
+        pathType: ImplementationSpecific
+      - backend:
+          service:
+            name: redirect-to-www
+            port:
+              name: use-annotation
+        path: /*
+        pathType: ImplementationSpecific
+  - host: www.stage3.app.staging.ecommercemd.com
+    http:
+      paths:
+      - backend:
+          service:
+            name: ssl-redirect
+            port:
+              name: use-annotation
+        path: /*
+        pathType: ImplementationSpecific
+      - backend:
+          service:
+            name: b2b-fe-admin-service
+            port:
+              number: 443
+        path: /admin
+        pathType: Prefix
+      - backend:
+          service:
+            name: b2b-fe-service
+            port:
+              number: 443
+        path: /*
+        pathType: ImplementationSpecific
+  - host: emd.stage3.app.staging.ecommercemd.com
+    http:
+      paths:
+      - backend:
+          service:
+            name: b2b-service
+            port:
+              number: 443
+        path: /*
+        pathType: ImplementationSpecific
+  - host: stage4.app.staging.ecommercemd.com
+    http:
+      paths:
+      - backend:
+          service:
+            name: ssl-redirect
+            port:
+              name: use-annotation
+        path: /*
+        pathType: ImplementationSpecific
+      - backend:
+          service:
+            name: redirect-to-www
+            port:
+              name: use-annotation
+        path: /*
+        pathType: ImplementationSpecific
+  - host: www.stage4.app.staging.ecommercemd.com
+    http:
+      paths:
+      - backend:
+          service:
+            name: ssl-redirect
+            port:
+              name: use-annotation
+        path: /*
+        pathType: ImplementationSpecific
+      - backend:
+          service:
+            name: b2b-fe-admin-service
+            port:
+              number: 443
+        path: /admin
+        pathType: Prefix
+      - backend:
+          service:
+            name: b2b-fe-service
+            port:
+              number: 443
+        path: /*
+        pathType: ImplementationSpecific
+  - host: emd.stage4.app.staging.ecommercemd.com
+    http:
+      paths:
+      - backend:
+          service:
+            name: b2b-service
+            port:
+              number: 443
+        path: /*
+        pathType: ImplementationSpecific
+status:
+  loadBalancer:
+    ingress:
+    - hostname: k8s-default-b2bfeing-399558a31b-967465929.us-east-1.elb.amazonaws.com

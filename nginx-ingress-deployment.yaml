@@ -1,0 +1,160 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  annotations:
+    deployment.kubernetes.io/revision: "4"
+    kubectl.kubernetes.io/last-applied-configuration: |
+      {"apiVersion":"apps/v1","kind":"Deployment","metadata":{"annotations":{},"name":"nginx-ingress-internal-controller","namespace":"default"},"spec":{"replicas":1,"selector":{"matchLabels":{"app.kubernetes.io/instance":"nginx-ingress-internal","app.kubernetes.io/name":"nginx-ingress"}},"template":{"metadata":{"labels":{"app.kubernetes.io/instance":"nginx-ingress-internal","app.kubernetes.io/name":"nginx-ingress"}},"spec":{"automountServiceAccountToken":true,"containers":[{"args":["-nginx-plus=false","-nginx-reload-timeout=60000","-enable-app-protect=false","-enable-app-protect-dos=false","-nginx-configmaps=$(POD_NAMESPACE)/nginx-ingress-internal","-ingress-class=nginx","-health-status=false","-health-status-uri=/nginx-health","-nginx-debug=false","-v=1","-nginx-status=true","-nginx-status-port=8080","-nginx-status-allow-cidrs=127.0.0.1","-report-ingress-status","-external-service=nginx-ingress-internal-controller","-enable-leader-election=true","-leader-election-lock-name=nginx-ingress-leader","-enable-prometheus-metrics=true","-prometheus-metrics-listen-port=9113","-prometheus-tls-secret=","-enable-service-insight=false","-service-insight-listen-port=9114","-service-insight-tls-secret=","-enable-custom-resources=true","-enable-snippets=false","-include-year=false","-disable-ipv6=false","-enable-tls-passthrough=false","-enable-cert-manager=false","-enable-oidc=false","-enable-external-dns=false","-default-http-listener-port=80","-default-https-listener-port=443","-ready-status=true","-ready-status-port=8081","-enable-latency-metrics=false","-ssl-dynamic-reload=true"],"env":[{"name":"POD_NAMESPACE","valueFrom":{"fieldRef":{"apiVersion":"v1","fieldPath":"metadata.namespace"}}},{"name":"POD_NAME","valueFrom":{"fieldRef":{"apiVersion":"v1","fieldPath":"metadata.name"}}}],"image":"nginx/nginx-ingress:3.4.3","imagePullPolicy":"IfNotPresent","name":"nginx-ingress","ports":[{"containerPort":80,"name":"http","protocol":"TCP"},{"containerPort":443,"name":"https","protocol":"TCP"},{"containerPort":9113,"name":"prometheus","protocol":"TCP"},{"containerPort":8081,"name":"readiness-port","protocol":"TCP"}],"readinessProbe":{"failureThreshold":3,"httpGet":{"path":"/nginx-ready","port":"readiness-port","scheme":"HTTP"},"periodSeconds":1,"successThreshold":1,"timeoutSeconds":1},"resources":{"requests":{"cpu":"100m","memory":"128Mi"}},"securityContext":{"allowPrivilegeEscalation":false,"capabilities":{"add":["NET_BIND_SERVICE"],"drop":["ALL"]},"readOnlyRootFilesystem":false,"runAsNonRoot":true,"runAsUser":101},"terminationMessagePath":"/dev/termination-log","terminationMessagePolicy":"File"},{"image":"httpd:latest","name":"httpd","ports":[{"containerPort":80,"name":"httpd","protocol":"TCP"}]}]}}}}
+  creationTimestamp: "2024-02-20T08:24:12Z"
+  generation: 5
+  name: nginx-ingress-internal-controller
+  namespace: default
+  resourceVersion: "145057131"
+  uid: 10e0ed5a-6993-4fe6-85e4-0d84c5e6dd4e
+spec:
+  progressDeadlineSeconds: 600
+  replicas: 1
+  revisionHistoryLimit: 10
+  selector:
+    matchLabels:
+      app.kubernetes.io/instance: nginx-ingress-internal
+      app.kubernetes.io/name: nginx-ingress
+  strategy:
+    rollingUpdate:
+      maxSurge: 25%
+      maxUnavailable: 25%
+    type: RollingUpdate
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        app.kubernetes.io/instance: nginx-ingress-internal
+        app.kubernetes.io/name: nginx-ingress
+    spec:
+      automountServiceAccountToken: true
+      containers:
+      - args:
+        - -nginx-plus=false
+        - -nginx-reload-timeout=60000
+        - -enable-app-protect=false
+        - -enable-app-protect-dos=false
+        - -nginx-configmaps=$(POD_NAMESPACE)/nginx-ingress-internal
+        - -ingress-class=nginx
+        - -health-status=false
+        - -health-status-uri=/nginx-health
+        - -nginx-debug=false
+        - -v=1
+        - -nginx-status=true
+        - -nginx-status-port=8080
+        - -nginx-status-allow-cidrs=127.0.0.1
+        - -report-ingress-status
+        - -external-service=nginx-ingress-internal-controller
+        - -enable-leader-election=true
+        - -leader-election-lock-name=nginx-ingress-leader
+        - -enable-prometheus-metrics=true
+        - -prometheus-metrics-listen-port=9113
+        - -prometheus-tls-secret=
+        - -enable-service-insight=false
+        - -service-insight-listen-port=9114
+        - -service-insight-tls-secret=
+        - -enable-custom-resources=true
+        - -enable-snippets=false
+        - -include-year=false
+        - -disable-ipv6=false
+        - -enable-tls-passthrough=false
+        - -enable-cert-manager=false
+        - -enable-oidc=false
+        - -enable-external-dns=false
+        - -default-http-listener-port=80
+        - -default-https-listener-port=443
+        - -ready-status=true
+        - -ready-status-port=8081
+        - -enable-latency-metrics=false
+        - -ssl-dynamic-reload=true
+        env:
+        - name: POD_NAMESPACE
+          valueFrom:
+            fieldRef:
+              apiVersion: v1
+              fieldPath: metadata.namespace
+        - name: POD_NAME
+          valueFrom:
+            fieldRef:
+              apiVersion: v1
+              fieldPath: metadata.name
+        image: nginx/nginx-ingress:3.4.3
+        imagePullPolicy: IfNotPresent
+        name: nginx-ingress
+        ports:
+        - containerPort: 80
+          name: http
+          protocol: TCP
+        - containerPort: 443
+          name: https
+          protocol: TCP
+        - containerPort: 9113
+          name: prometheus
+          protocol: TCP
+        - containerPort: 8081
+          name: readiness-port
+          protocol: TCP
+        readinessProbe:
+          failureThreshold: 3
+          httpGet:
+            path: /nginx-ready
+            port: readiness-port
+            scheme: HTTP
+          periodSeconds: 1
+          successThreshold: 1
+          timeoutSeconds: 1
+        resources:
+          requests:
+            cpu: 100m
+            memory: 128Mi
+        securityContext:
+          allowPrivilegeEscalation: false
+          capabilities:
+            add:
+            - NET_BIND_SERVICE
+            drop:
+            - ALL
+          readOnlyRootFilesystem: false
+          runAsNonRoot: true
+          runAsUser: 101
+        terminationMessagePath: /dev/termination-log
+        terminationMessagePolicy: File
+      - image: httpd:latest
+        imagePullPolicy: Always
+        name: httpd
+        ports:
+        - containerPort: 80
+          name: httpd
+          protocol: TCP
+        resources: {}
+        terminationMessagePath: /dev/termination-log
+        terminationMessagePolicy: File
+      dnsPolicy: ClusterFirst
+      restartPolicy: Always
+      schedulerName: default-scheduler
+      securityContext: {}
+      terminationGracePeriodSeconds: 30
+status:
+  availableReplicas: 1
+  conditions:
+  - lastTransitionTime: "2024-02-22T09:49:42Z"
+    lastUpdateTime: "2024-02-22T09:49:42Z"
+    message: Deployment has minimum availability.
+    reason: MinimumReplicasAvailable
+    status: "True"
+    type: Available
+  - lastTransitionTime: "2024-02-20T08:24:12Z"
+    lastUpdateTime: "2024-02-22T10:01:07Z"
+    message: ReplicaSet "nginx-ingress-internal-controller-776b7ff5f8" is progressing.
+    reason: ReplicaSetUpdated
+    status: "True"
+    type: Progressing
+  observedGeneration: 5
+  readyReplicas: 1
+  replicas: 2
+  unavailableReplicas: 1
+  updatedReplicas: 1

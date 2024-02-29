@@ -1,0 +1,15 @@
+eksctl create cluster  --instance-selector-vcpus=2 --instance-selector-memory=2 --name testdev --dry-run > create-cluster.yml
+
+helm repo add jetstack https://charts.jetstack.io
+
+helm repo update
+
+kubectl apply -f cert-manager.crds.yaml
+
+helm repo add nginx-stable https://helm.nginx.com/stable
+
+helm repo update
+
+helm install nginx-ingress-internal nginx-stable/nginx-ingress --set controller.service.type=LoadBalancer,defaultBackend.enabled=false,controller.defaultBackendService=nginx
+
+kubectl apply -f https://github.com/cert-manager/cert-manager/releases/download/v1.13.2/cert-manager.yaml

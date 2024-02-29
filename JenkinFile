@@ -1,0 +1,23 @@
+pipeline {
+    agent any
+    environment {
+        cloudflare = credentials('cloudflare')
+    }
+    stages {
+        stage('init') {
+            steps {
+                bat "C:/terraform/terraform.exe init"
+            }
+        }
+        stage('plan') {
+            steps {
+                bat "C:/terraform/terraform.exe plan --var token=$cloudflare"
+            }
+        }
+        stage('Build') {
+            steps {
+                bat "C:/terraform/terraform.exe destroy --var token=$cloudflare -auto-approve"
+            }
+        }
+    }
+}

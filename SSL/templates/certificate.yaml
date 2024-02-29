@@ -1,0 +1,17 @@
+# Certificate Resource
+apiVersion: cert-manager.io/v1
+kind: Certificate
+metadata:
+  name: tls-{{ .Values.name }}
+spec:
+  secretName: secret-tls-{{ .Values.name }}
+  renewBefore: 240h
+  duration: 2160h
+  commonName: {{ .Values.domain }}
+  dnsNames:
+  - {{ .Values.domain }}
+  - emd.{{ .Values.domain }}
+  - www.{{ .Values.domain }}
+  issuerRef:
+    name: letsencrypt-prod
+    kind: ClusterIssuer

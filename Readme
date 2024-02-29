@@ -1,0 +1,30 @@
+Create Cluster
+eksctl create cluster  --instance-selector-vcpus=2 --instance-selector-memory=2 --name testdev
+
+Create Jetstack
+helm repo add jetstack https://charts.jetstack.io
+
+Create CertMangaer
+kubectl apply -f cert-manager.crds.yaml
+
+Add Nginx-Stable
+helm repo add nginx-stable https://helm.nginx.com/stable
+
+Update Repos
+helm repo update
+
+Run Redirect
+kubectl apply -f redirect.yml
+
+Create nginx-ingress-controller
+helm install nginx-ingress-internal nginx-stable/nginx-ingress --set controller.service.type=LoadBalancer,defaultBackend.enabled=false,controller.defaultBackendService=nginx
+
+Create nginx-ingress-controller
+kubectl apply -f https://github.com/cert-manager/cert-manager/releases/download/v1.13.2/cert-manager.yaml
+
+Create Domain on Domain Configration
+
+Point CNAME of stage1.app.staging.ecommercemd.com , emd.stage1.app.staging.ecommercemd.com ,and www.stage1.app.staging.ecommercemd.com
+to app.staging.ecommercemd.com
+
+helm install ssl --set name=example,domain=example.com  .\SSL && helm install Ingress --set name=example,domain=example.com .\Ingress
